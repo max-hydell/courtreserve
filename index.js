@@ -38,14 +38,15 @@ await page.goto("https://app.courtreserve.com/Account/Login", {
 });
 
 // wait explicitly for input to exist
-await page.waitForSelector('input[type="email"], input[name="Email"]', { timeout: 60000 });
+await page.waitForSelector('input[placeholder="Enter Your Email"]', { timeout: 60000 });
 
-await page.fill('input[type="email"]', EMAIL);
-await page.fill('input[type="password"]', PASSWORD);
+
+await page.fill('input[placeholder="Enter Your Email"]', EMAIL);
+await page.fill('input[placeholder="Enter Your Password"]', PASSWORD);
 
 await Promise.all([
   page.waitForNavigation(),
-  page.click('button[type="submit"]')
+  page.click('button:has-text("Continue")')
 ]);
 
 await page.waitForLoadState("networkidle");
