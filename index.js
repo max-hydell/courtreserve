@@ -18,7 +18,7 @@ const START_TIME = "7:30 AM";
 const END_TIME = "8:30 AM";
 
 (async () => {
-  const browser = await chromium.launch({ headless: false });
+  const browser = await chromium.launch({ headless: true });
   const context = await browser.newContext();
   const page = await context.newPage();
 
