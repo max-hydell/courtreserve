@@ -3,7 +3,14 @@ name: CourtReserve Bot
 on:
   schedule:
     - cron: "31 12 * * 1-5" # 8:31 AM EST
+
   workflow_dispatch:
+    inputs:
+      date:
+        description: "Booking date"
+        required: true
+        type: string
+
 
 jobs:
   run-bot:
