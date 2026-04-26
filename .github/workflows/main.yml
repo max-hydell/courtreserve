@@ -1,0 +1,30 @@
+name: CourtReserve Bot
+
+on:
+  schedule:
+    - cron: "31 12 * * 1-5" # 8:31 AM EST
+  workflow_dispatch:
+
+jobs:
+  run-bot:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Install Node
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18
+
+      - name: Install dependencies
+        run: |
+          npm install
+          npx playwright install --with-deps
+
+      - name: Run bot
+        run: node index.js
+        env:
+          CR_EMAIL: ${{ secrets.CR_EMAIL }}
+          CR_PASSWORD: ${{ secrets.CR_PASSWORD }}
